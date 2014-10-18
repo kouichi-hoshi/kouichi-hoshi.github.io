@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<meta charset="UTF-8">
+	<title>demo</title>
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript">
+
+		jQuery(function(){
+
+			jQuery('li').each(function(){
+				var url = jQuery('a',this); //liの子要素のa要素を取得する
+				jQuery('span',this).prependTo(url); //liの子要素のspan要素を変数url
+			});
+
+		});
+
+	</script>
+
+</head>
+<body>
+	
+	<ul>
+		<li>
+			<span>item1</span>
+			<a href="">:リンク</a>
+		</li>
+		<li>
+			<span>item2</span>
+			<a href="">:リンク</a>
+		</li>
+		<li>
+			<span>item3</span>
+			<a href="">:リンク</a>
+		</li>
+		<li>
+			<span>item4</span>
+			<a href="">:リンク</a>
+		</li>
+		<li>
+			<span>item5</span>
+			<a href="">:リンク</a>
+		</li>
+		<li>
+			<span>item6</span>
+			<a href="">:リンク</a>
+		</li>
+	</ul>	
+
+</body>
+</html>

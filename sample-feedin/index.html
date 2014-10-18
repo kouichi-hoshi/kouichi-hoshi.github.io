@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+ 
+$(function(){
+  
+    //フェードインさせる要素をいったん非表示にする
+    $('li').css('display','none');
+
+    });
+
+$(function(){
+
+    var $cont = $('li');
+
+    //全てのページコンテンツを読み込んだ後に、function内の処理を実行
+    $(window).load(function(){
+
+        //ローディング画像をHTMLから削除する
+        $('.loading').remove();
+
+        //contの数だけループ
+        for(var i = 0; i < $cont.length; i++){
+
+        //contのi番目を、0.5×i秒後に、フェードインさせる
+        $cont.eq(i).delay(500 * i).fadeIn();
+        };
+
+    });
+
+});
+ 
+</script>
+ 
+</head>
+ 
+<body style="background-color:black;">
+    <p class="loading"><img src="loadinfo.net.gif" /><span style="color:#FFFFFF;">画像をロードしています。しばらくお待ち下さい。</span></p>
+    <ul>
+        <li><img src="B102_hirogarunatunoine.jpg" width="200" height="150" /></li>
+        <li><img src="E146_sudoribokujyou.jpg" width="200" height="150" /></li>
+        <li><img src="N745_sukusukuhimawari.jpg" width="200" height="150" /></li>
+        <li><img src="PPS_hirobanooyako.jpg" width="200" height="150" /></li>
+    </ul>
+</body>
+</html>
