@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+
+
+.none{
+	display: none;
+}
+
+.menu_btn{
+	cursor: pointer;
+	padding: 10px;
+}
+
+.navigation li{
+	list-style: none;
+}
+
+@media screen and (min-width: 641px) {
+	.navigation li{
+		float: left;
+		margin: 10px;
+	}
+}
+
+</style>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+ 
+
+jQuery(function() {
+
+
+	var $btn = ('.menu_btn');
+	var $nav = ('.navigation');
+
+	/*
+	 * ブラウザのウィンドウ幅を取得してメニューボタンの表示/非表示を切り替え
+	 */
+
+	jQuery(window).resize(function(){
+
+		var w = jQuery(window).width(); //ブラウザの幅を取得
+		var x = 640;　//条件設定
+
+		if (w <= x) { // ウィンドウサイズが640px以下
+
+			jQuery($btn).removeClass('none');
+			jQuery($nav).addClass('none');
+
+			} else { //ウィンドウサイズが641以上
+				jQuery($btn).addClass('none').text('メニュー'); //初期化する
+				jQuery($nav).removeClass('none').removeAttr('style'); //初期化する
+			}
+
+	});
+
+	/*
+	 * クリックイベントによるスライドダウン/アップ
+	 */
+
+	jQuery($btn).on('click',(function(){
+
+		if (jQuery($nav).css('display')=='none'){
+			jQuery($nav).slideDown('slow');
+			jQuery($btn).text('メニューを閉じる');
+		} else {
+			jQuery($nav).slideUp('fast');
+			jQuery($btn).text('メニュー');
+		}
+
+		})
+	);
+
+
+});
+
+</script>
+
+</head>
+
+<body>
+<div class="wrap">
+	<header class="header">
+		<h1>sample-responsive_menu</h1>
+		<button class="menu_btn">メニュー</button>
+		<nav class="navigation">
+			<ul>
+				<li>メニュー1</li>
+				<li>メニュー2</li>
+				<li>メニュー3</li>
+				<li>メニュー4</li>
+				<li>メニュー5</li>
+			</ul>
+		</nav>
+	</header>
+</div>
+
+
+
+</body>
+</html>
