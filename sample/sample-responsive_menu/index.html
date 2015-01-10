@@ -33,8 +33,8 @@
 jQuery(function() {
 
 
-	var $btn = ('.menu_btn');
-	var $nav = ('.navigation');
+	var $btn = jQuery('.menu_btn');
+	var $nav = jQuery('.navigation');
 
 	/*
 	 * ブラウザのウィンドウ幅を取得してメニューボタンの表示/非表示を切り替え
@@ -51,8 +51,8 @@ jQuery(function() {
 			jQuery($nav).addClass('none');
 
 			} else { //ウィンドウサイズが641以上
-				jQuery($btn).addClass('none').text('メニュー'); //初期化する
-				jQuery($nav).removeClass('none').removeAttr('style'); //初期化する
+				jQuery($btn).addClass('none').text('メニュー'); //非表示・文字をメニューにする
+				jQuery($nav).removeClass('none').removeAttr('style'); //表示・styleを初期化する
 			}
 
 	});
