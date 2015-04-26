@@ -46,10 +46,9 @@ jQuery(function() {
 	jQuery(window).resize(function(){
 
 		var w = jQuery(window).width(); //ブラウザの幅を取得
-		var x = 640;　//条件設定
-		jQuery('body').prepend(w);
+		var x = 768;　//条件設定
 
-		if (w <= x) { // ウィンドウサイズが640px以下
+		if (w <= x) { // ウィンドウサイズが768px以下
 
 			jQuery($btn).removeClass('none');
 			jQuery($nav).addClass('none');
