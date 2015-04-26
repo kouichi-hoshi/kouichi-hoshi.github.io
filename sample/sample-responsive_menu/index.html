@@ -47,7 +47,7 @@ jQuery(function() {
 
 		var w = jQuery(window).width(); //ブラウザの幅を取得
 		var x = 640;　//条件設定
-		document.write(w);
+		jQuery('body').prependTo(w);
 
 		if (w <= x) { // ウィンドウサイズが640px以下
 
