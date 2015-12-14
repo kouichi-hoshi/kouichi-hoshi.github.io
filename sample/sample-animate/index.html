@@ -46,13 +46,24 @@ function animate($ani, $valPos) {
 
 }
 
-$(window).scroll(function() {
+jQuery(window).on('touchstart scroll', function(){
 
-  animate('bounce', '5');
-  animate('fadeIn', '7');
-  animate('pulse', '5');
-  animate('swing', '3');
-  animate('bounceIn', '5');
+	//timerID;
+	var timer = false;
+
+	if (timer !== false) {
+		clearTimeout(timer);
+	}
+
+	timer = setTimeout(function() {
+
+		animate('bounce','3');
+		animate('fadeIn','7');
+		animate('pulse','5');
+		animate('swing','5');
+		animate('bounceIn','5');
+
+	}, 100);
 
 });
 
