@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width" />
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<link href="animate.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<style type="text/css">
+
+h1{
+  margin-bottom: 800px;
+}
+
+p{
+  font-size: 24px;
+  text-align:center;
+  padding: 60px 30px;
+  margin: 90px 180px;
+  border: 5px solid #CCCCCC;
+  background-color:#FFFFFF;
+}
+
+</style>
+<script type="text/javascript">
+
+function animate($ani, $valPos) {
+
+	if ($ani === 'fadeIn') {
+		$(".ani-" + $ani).css("opacity", "0");
+	}
+
+	$(".ani-" + $ani).each(function() {
+
+		var imgPos = $(this).offset().top;
+		var scroll = $(window).scrollTop();
+		var windowHeight = $(window).height();
+
+		if (scroll > imgPos - windowHeight + windowHeight / $valPos) {
+			$(this).addClass("animated " + $ani);
+		} else {
+	  		$(this).removeClass("animated " + $ani);
+		}
+
+	});
+
+}
+
+$(window).scroll(function() {
+
+  animate('bounce', '5');
+  animate('fadeIn', '7');
+  animate('pulse', '5');
+  animate('swing', '3');
+  animate('bounceIn', '5');
+
+});
+
+</script>
+
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="col-xs-12">
+			<h1>Please scroll ↓↓↓</h1>
+			<p class="ani-bounce">bounce</p>
+			<p class="ani-pulse">pulse</p>
+			<p class="ani-swing">bounce</p>
+			<p class="ani-bounce">swing</p>
+			<p class="ani-fadeIn">fadeIn</p>
+		</div>
+	</div>
+
+</body>
+</html>
