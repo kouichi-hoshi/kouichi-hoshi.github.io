@@ -39,7 +39,7 @@ function animate($ani, $valPos) {
 		if (scroll > imgPos - windowHeight + windowHeight / $valPos) {
 			$(this).addClass("animated " + $ani);
 		} else {
-	  		$(this).removeClass("animated " + $ani);
+		$(this).removeClass("animated " + $ani);
 		}
 
 	});
@@ -78,8 +78,7 @@ jQuery(window).on('touchstart scroll', function(){
 			<h1>Please scroll ↓↓↓</h1>
 			<p class="ani-bounce">bounce</p>
 			<p class="ani-pulse">pulse</p>
-			<p class="ani-swing">bounce</p>
-			<p class="ani-bounce">swing</p>
+			<p class="ani-swing">swing</p>
 			<p class="ani-fadeIn">fadeIn</p>
 		</div>
 	</div>
