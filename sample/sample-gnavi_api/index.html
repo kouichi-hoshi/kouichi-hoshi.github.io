@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width" />
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script type='text/javascript' src='js/imagesloaded.pkgd.min.js'></script>
+<script type='text/javascript' src='js/masonry.pkgd.min.js'></script>
+<script type='text/javascript' src='js/gnavi_api.js'></script>
+<script type='text/javascript' src='js/custom.js'></script>
+</head>
+
+<body>
+
+	<article class="wrap">
+
+
+		<header class="header">
+			<div class="inner">
+				<h1>都道府県別カフェ検索<br />(ぐるなびAPIサンプルコード)</h1>
+				<h2 class="pref_title"></h2>
+				<p><span class="total"></span></p>
+				<div class="pref_search">
+					<h3>都道府県変更</h3>
+					<select name="pref_name"></select>
+					<button type="button" name="pref_btn">変更する</button>
+				</div>
+				<p class="text">このサイトはぐるなびAPIを使って作ったSPAのサンプルサイトです。ぐるなびに掲載されているカフェを、都道府県ごとに表示させる機能を提供します。</p>
+				<div>
+					<a href="http://www.gnavi.co.jp/"> 
+						<img src="http://apicache.gnavi.co.jp/image/rest/b/api_155_20.gif" width="155" height="20" border="0" alt="グルメ情報検索サイト　ぐるなび">
+					</a>					
+				</div>
+			</div>
+		</header>
+		<div class="main-content">
+			<section>
+				<ul class="ul result grid"></ul>
+				<input type="button" class="btn--more-load" value="さらに表示する" />
+			</section>
+		</div>
+
+		<footer>
+			<div class="container">
+			</div>
+		</footer>
+		<div class="go-to-top"><a class="go-to-top_body" href="#">▲<br />もどる</a></div>
+
+	</article>
+
+</body>
+</html>
