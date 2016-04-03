@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width" />
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<style type="text/css">
+
+	p{
+		position: relative;
+	}
+
+	.loading{
+		transition-property: opacity;
+		transition-duration: 0.5s;
+		transition-timing-function: ease;
+		position: absolute;
+	}
+	.cat{
+		transition-property: opacity;
+		transition-duration: 1s;
+		transition-timing-function: ease;
+		opacity: 0;
+		width: 50%;
+		height: auto;
+	}
+
+	.fade-in{
+		opacity: 1;
+	}
+
+	.fade-out{
+		opacity: 0;
+	}
+
+
+</style>
+<script type="text/javascript">
+
+jQuery(function() {
+
+	var fadeIn = function(fade,callBack){
+		jQuery('.loading').addClass('fade-out');
+		jQuery(fade).addClass('fade-in');
+		callBack();
+	}
+
+	var removeLoading = function(){
+		setTimeout(function(){jQuery('.loading').remove()},1000);
+	}
+
+	jQuery(window).on('load',function(){
+		setTimeout(function(){fadeIn('.cat',removeLoading)},1000);
+	});
+
+
+});
+
+</script>
+
+</head>
+<body>
+	<p>
+		<img class="loading" src="loading_icon.gif" />
+		<img class="cat" src="2577f69d583182ec6cfd722d472b28b9_l.jpg" />
+	</p>
+</body>
+</html>
