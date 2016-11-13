@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+
+
+//================================================================================
+
+// se-variables
+
+//================================================================================
+
+
+
+//===================
+
+// カラー設定
+// ページ全体で使う色を設定する
+
+//===================
+
+$color_blue: #0B6CCF;
+
+//プライマリカラー
+$primary_color: #000000;
+
+//セカンダリカラー
+$secondary_color: lighten($primary_color,20%);
+
+//ターシャリカラー
+$tertiary_color: lighten($primary_color,50%);
+
+//テキストカラー 本文用
+$text_color: $secondary_color;
+
+//リンクカラー
+$link_color: $color_blue;
+
+//キーカラー
+$key_color: $color_blue;
+
+
+
+//===================
+
+// フォント設定
+// ページ全体で使う文字を設定する
+
+//===================
+
+//フォントサイズ
+$font-size_initialize: 62.5%; //フォントサイズの初期設定
+$font-size_old_ie: 16px; //IE8以下用のフォントサイズ設定
+$font-size: 1.6rem; // =16px
+
+//行の高さ
+$line-height: 1.6;
+
+//文字の間隔
+$letter-spacing: 0.2rem;
+
+// フォントファミリを変数にセット
+$font-family-mincyo: 'Hiragino Mincho Pro','ヒラギノ明朝 Pro W6','HGS明朝E','MS P明朝',serif;
+//$font-family-kakugo: 'Lucida','Grande','Hiragino Kaku Gothic ProN', 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif;
+$font-family-kakugo: '游ゴシック体', 'Yu Gothic', YuGothic, 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, 'メイリオ', sans-serif;
+$font-family-marugo: 'ヒラギノ丸ゴ Pro','Hiragino Maru Gothic Pro', Meiryo, 'メイリオ', sans-serif;
+
+//フォントファミリを指定
+$font-family: $font-family-marugo;
+
+//glyphicons
+//$icon-font-path: "fonts/bootstrap/" !default;
+
+
+//===================
+
+// z-index
+
+//===================
+
+$z9: 9999;
+$z8: 8999;
+$z7: 7999;
+$z6: 6999;
+$z5: 5999;
+$z4: 4999;
+$z3: 3999;
+$z2: 2999;
+$z1: 1999;

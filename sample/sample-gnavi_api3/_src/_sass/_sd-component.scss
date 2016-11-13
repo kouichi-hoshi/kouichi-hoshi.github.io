@@ -1,0 +1,681 @@
+@charset "UTF-8";
+
+
+
+/*================================================================================================================================================================
+
+sd-component
+
+================================================================================================================================================================*/
+
+
+
+//================================================================================
+
+// レイアウト系
+
+//================================================================================
+
+// xs breakpoint 480px /phone
+@mixin mq-xs{
+	@media screen and(min-width:$screen-xs){
+		@content;
+	}
+//	@media print{
+//		@content;
+//	}
+}
+
+// sm breakpoint 768px /tablet
+@mixin mq-sm{
+	@media screen and(min-width:$screen-sm){
+		@content;
+	}
+//	@media print{
+//		@content;
+//	}
+}
+
+// md breakpoint 992px /desktop
+@mixin mq-md{
+	@media screen and(min-width:$screen-md){
+		@content;
+	}
+//	@media print{
+//		@content;
+//	}
+}
+
+// lg breakpoint 1200px /wide desktop
+@mixin mq-lg{
+	@media screen and(min-width:$screen-lg){
+		@content;
+	}
+//	@media print{
+//		@content;
+//	}
+}
+
+//====================
+
+//detachable-clear
+//動的にclear:bothを着脱する
+
+//====================
+
+//デフォルトで2列、sm以上で3列を想定
+//.detachable-clear{
+//	text-align: center;
+//	margin-bottom: 30px;
+//	&:nth-child(odd){
+//		clear:both;
+//	}
+//	@include mq-sm{
+//		&:nth-child(odd){
+//			clear:none;
+//		}
+//		&:nth-child(3n+1){
+//			clear:both;
+//		}
+//	}
+//}
+
+
+
+//================================================================================
+
+// モジュール系
+
+//================================================================================
+
+// fluid_img
+@mixin fluid_img{
+	max-width: 100%;
+//	width: auto;
+	height: auto;
+}
+
+
+// clear/clearfix
+@mixin clearfix{
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+}
+
+
+// 画像置換
+@mixin hide_text{
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+
+// 画像置換URL関数
+@function bg_url($fileName){
+	$img_directory:'images/';
+	@return url($img_directory + $fileName) + no-repeat;
+}
+
+// 記述例
+//#header-nav{
+//	@include mq-pc{
+//		li{
+//			@include hide-text_mix;
+//		}
+//		a{
+//			display: block;
+//			height: ***px;
+//		}
+//		.menu__***{
+//			background: bg_url('***.png');
+//			width: ***px;
+//		}
+//	}
+//}
+
+
+
+//================================================================================
+
+// html要素系
+
+//================================================================================
+
+// リスト/ol li
+@mixin ol-ul_reset{
+//	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+@mixin ol-ul--normal{
+	position: relative;
+//	padding-left: 10px;
+	li{
+		padding: 10px 0 0 10px;
+		&::before{
+			content: '・';
+			position: absolute;
+			left: -5px;
+			color: $key_color;
+		}
+		
+	}
+}
+
+@mixin ol_ul--Custom($color:lighten($primary_color,80%),$border-last:true){
+	//$border-last の値にfalseを指定すると一番最後の要素のborderを出力する
+	@include ol-ul_reset;
+	li{
+		border-bottom: 1px dotted $color;
+//		padding: 5px 0;
+		@if $border-last{
+			&:last-child{
+				border-bottom:none;
+			}
+		}
+	}
+	
+}
+
+// 定義リスト/dl
+// 引数にdtの幅をピクセル(単位無し)で入れる
+ @mixin dl($val) {
+
+	margin: 0;
+
+	dt {
+		padding: 5px 0;
+		clear: both;
+		font-weight: normal;
+		text-align: center;
+
+		@include mq-sm{
+			float: left;
+			width: $val + px;
+			padding: 5px 15px 5px 0;
+			box-sizing: border-box;
+		}
+
+	}
+	dd {
+		padding: 5px 0;
+		border-bottom: 1px dotted lighten($primary_color,50%);
+
+		@include mq-sm{
+			padding-left: $val + 5px;
+			&:last-child{
+				border:none;
+			}
+		}
+	}
+
+}
+
+// テーブル/table
+@mixin sd-table($boderColor:#CCCCCC,$thBgColor:lighten($boderColor,15%)){
+	width: 100%;
+	max-width: 100%;
+	background: #FFFFFF;
+	border-bottom: 1px solid $boderColor;
+	border-right: 1px solid $boderColor;
+	border-collapse: collapse;
+
+	caption{
+		font-weight: bold;
+		font-size: 110%;
+	}
+
+	& > thead tr,
+	& > tbody tr,
+	& > tfoot tr{	
+
+		> th{
+			background: $thBgColor;
+			font-weight: normal;
+			text-align: center;
+			vertical-align: middle;
+		}
+
+		> th, > td{
+			vertical-align: middle;
+			border-top: 1px solid $boderColor;
+			border-left: 1px solid $boderColor;
+			padding: 15px;
+		}
+
+	}
+
+}
+
+// 水平方向の罫線/hr
+@mixin hr($val:$primary_color){
+	clear: both;
+	border: 0;
+	height: 1px;
+	border-bottom: 1px solid $val;
+}
+
+// フォーム/form
+@mixin sd-form($valColor){
+
+	textarea,
+	input{
+		border: 1px solid $valColor;
+	}
+
+	label{
+		margin-right: 15px;
+	}
+
+	textarea,
+	input[type="text"]{
+		padding: 5px;
+		width:100%;
+		font-size: 1rem;
+		@include mq-lg{
+			font-size: $font-size;
+		}
+	}
+
+	textarea{
+		min-height: 200px;
+	}
+
+	input[type="submit"]{
+		padding: 5px;
+		margin: 5px;
+	}
+
+}
+
+
+
+
+
+
+
+//================================================================================
+
+// ユーティリティ系
+
+//================================================================================
+
+// ボックスシャドウ/box-shadow
+@mixin box-shadow($y:0,$x:0,$blur:10px,$width:1px,$color:#CCCCCC){
+	box-shadow: $y $x $blur $width $color;
+}
+
+@mixin box-shadow--gray{
+	@include box-shadow();
+}
+
+@mixin box-shadow--white{
+	@include box-shadow(0,0,15px,#FFFFFF);
+}
+
+
+// テキストシャドウ/text-shadow
+@mixin text-shadow($y:0,$x:1px,$blur:0,$color:rgba(#969696, 0.6)){
+	text-shadow: $y $x $blur $color;
+}
+
+@mixin text-shadow--gray{
+	@include text-shadow();
+}
+
+@mixin text-shadow-white{
+	@include text-shadow(0,1px,0,#FFFFFF);
+}
+
+
+// グラデーション/gradation
+@mixin sd-gradation($valColor1:#FFFFFF,$valColor2:rgba(250, 250, 250, 0.4)){
+	background-color: transparent;
+	background-image:linear-gradient(to bottom, $valColor1 0%, $valColor2 100%);
+}
+
+// ブロック/block
+//引数:パディング/ボーダー太さ/ボーダー色/背景色/
+@mixin sd-block($pad:15px,$border-line-weight:1px,$border-color:lighten($tertiary_color,30%),$bg-color:rgba(255,255,255,0.5)){
+	padding: $pad;
+	border: $border-line-weight solid $border-color;
+	background-color: $bg-color;
+	*:last-child{
+		margin-bottom: 0;
+	}
+}
+
+//引数：ボーダーの太さ/ボーダーの色/回転角度
+@mixin sd-block--diagonal-stripe($border-line-weight:5px,$border-color:#F0F0F0,$spin:-45deg) {
+	background: repeating-linear-gradient($spin, $border-color, $border-color $border-line-weight, #FFFFFF $border-line-weight, #FFFFFF $border-line-weight*2);
+}
+
+// ボタン/button
+@mixin sd-btn($Color:#FFFFFF,$bgColor:$link_color,$pad:5px,$radius:4px){
+	border: 0;
+	color: $Color;
+	background-color: $bgColor;
+	border-radius: $radius;
+	display: inline-block;
+	padding: $pad;
+	cursor: pointer;
+	font-size: $font-size;
+	line-height: $line-height*0.9;
+	a,
+	&:hover,
+	&:focus,
+	a:hover,
+	a:focus{
+		color: $Color;
+	}
+}
+
+// マーク/mark
+@mixin mark($bg-c:$link_color,$font-c:#FFFFFF){
+	background: $bg-c;
+	padding: 3px 9px;
+	color: $font-c;
+	border-radius: 4px;
+	text-align: center;
+	display: inline-block;
+	font-size: $font-size - 0.4rem;
+	vertical-align: text-bottom;
+}
+
+// ラベル/label
+@mixin label($font-color:#FFFFFF,$bg-color:$primary_color){
+	padding: 5px;
+	font-size: 85%;
+	border-radius: 6px;
+	color: $font-color;
+	background-color: $bg-color;
+}
+
+// 写真/picture
+@mixin picture(){
+	border: 5px solid #FFFFFF;
+}
+
+
+
+//================================================================================
+
+// UI系
+
+//================================================================================
+
+
+//====================
+
+// navStyle
+// javaScriptで開閉するナビゲーションに与えるcss
+// wordpress専用
+
+//====================
+
+@mixin navUlStyle($menuUL,$bgColor:rgba(255,255,255,0.98)){
+	opacity: 0;
+	width: 100%;
+	background: $bgColor;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: table;
+	z-index:$z9;
+
+	div.menu > ul, // カスタムメニュー非セット時のセレクタ
+	ul#{$menuUL}{ // カスタムメニューセット時のセレクタ 引数にはカスタムメニューをwrapするul要素につくclass名を指定する
+
+		@include ol-ul_reset();
+		display:none;
+
+		li.menu-item > a,
+		li.page-item > a{
+			display: block;
+			text-align: center;
+			font-size: 2rem;
+			padding: 15px;
+			border-bottom: 1px solid lighten($link_color,50%);
+			@include hover-color-effect;
+		}
+
+		li.menu-item:last-child a{
+			border: none;
+		}
+
+	}
+
+}
+
+
+
+//================================================================================
+
+// transition系
+
+//================================================================================
+
+// フェードイン/アウト
+@mixin fade-in($opa:1,$sec:0.2s,$timing:linear){
+	transition: opacity $sec $timing;
+	opacity: $opa !important;
+}
+
+
+// オンマウス/アウトでフェードイン/アウト
+@mixin hover-fade-in($opa:0.6,$sec:0.2s){
+	transition: opacity $sec linear;
+	&:hover{
+		opacity: $opa;
+	}
+}
+
+
+// オンマウスで背景と文字色入れ替え
+@mixin hover-color-change($c1:black,$c2:red,$duration:0.2s,$delay:0.1s){
+	background-color: $c1;
+	color: $c2;
+	transition: background-color $duration linear $delay;
+	&:hover{
+		background-color: $c2;
+		color: $c1;
+	}
+	a{
+		opacity: 1;
+		color: $c2;
+		&:hover{
+			color: $c1;
+		}
+	}
+}
+
+// オンマウスで背景と文字色入れ替え
+@mixin hover-color-effect($c1:transparent,$c2:$link_color,$c3:$link_color,$duration:0.2s,$delay:0.1s){
+	background-color: $c1;
+	color: $c2;
+	transition: background-color $duration linear $delay;
+	&:hover{
+		background-color: lighten($c3,50%);
+	}
+}
+
+
+
+//================================================================================
+
+// animation系
+
+//================================================================================
+
+// オンマウスで背景色点滅
+// @mixin hoverFlashingKeyframes($c0:transparent,$c50:lighten($link_color,60%),$c100:transparent){
+// 	@keyframes hoverFlashingKeyframes {
+// 		0% { background-color: $c0; }
+// 		50% { background-color: $c50; }
+// 		100% { background-color: $c100; }
+// 	}
+// }
+
+// @mixin hoverFlashing($duration:2s){
+// 	animation: hoverFlashingKeyframes $duration infinite;
+//}
+
+// 点滅
+@mixin flashingKeyframes($c0:0,$c50:0.5,$c100:0){
+	@keyframes hoverFlashingKeyframes {
+		0% { opacity: $c0; }
+		50% { opacity: $c50; }
+		100% { opacity: $c100; }
+	}
+}
+
+@mixin flashing($duration:2s){
+	animation: hoverFlashingKeyframes $duration infinite;
+}
+
+// 点滅キーフレーム 背景色の透明度を変更する
+@mixin sdKeyframes--background-flashing($c0:transparent,$c50:lighten($link_color,60%),$c100:transparent){
+	@keyframes sdKeyframes--background-flashing {
+		0% { background-color: $c0; }
+		50% { background-color: $c50; }
+		100% { background-color: $c100; }
+	}
+}
+
+// 点滅キーフレーム 要素の透明度を変更する
+@mixin sdKeyframes--opacity-flashing($c0:0,$c50:0.5,$c100:0){
+	@keyframes sdKeyframes--opacity-flashing {
+		0% { opacity: $c0; }
+		50% { opacity: $c50; }
+		100% { opacity: $c100; }
+	}
+}
+
+// 点滅実行 キーフレームを選ぶ
+@mixin sdFlashing($keyf:sdKeyframes--opacity-flashing,$duration:1s){
+	animation: $keyf $duration infinite;
+}
+
+
+
+//================================================================================
+
+// node_modules animate.scss import
+
+//================================================================================
+
+
+//animate.scssを読み込み
+@import '../../node_modules/animate.scss/vendor/assets/stylesheets/animate';
+@import '../../node_modules/animate.scss/vendor/assets/stylesheets/animate/fadeIn';
+@import '../../node_modules/animate.scss/vendor/assets/stylesheets/animate/fadeInUp';
+@import '../../node_modules/animate.scss/vendor/assets/stylesheets/animate/fadeInLeft.scss';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+//test code
+
+
+//.sample-01
+@keyframes ani-wi {
+	0% { width: 40%; }
+	100% { width: 100%; }
+}
+
+//animationSet default
+@keyframes sd-fadeIn {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+//.sample-02-2
+@keyframes fadeInUp2 {
+	0% {
+		opacity: 0.5;
+		transform: translateY(50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(-50px);
+	}
+}
+
+@mixin animationSet($nameIf:false,$name:sd-fadeIn,$durIf:false,$dur:1s,$timf:linear,$delay:0,$ite:1,$dir:normal){
+	@if $nameIf{
+		 animation-name: $name; // キーフレーム
+	}
+	@if $nameIf{
+		animation-duration: $dur; //実行するスピード
+	}
+	animation-timing-function: $timf; //タイミング・進行割合
+	animation-delay: $delay; //遅延時間
+	animation-iteration-count: $ite; //繰り返し回数
+	animation-direction: $dir; //反転再生
+}
+
+.develop-02{
+
+	#header{
+		margin-bottom: 60px;
+	}
+
+	.block{
+		@include sd-block--diagonal-stripe;
+		text-align: center;
+		margin-bottom: 60px;
+	}
+
+	//センターに配置した要素の幅が広がるエフェクト
+	.sample-01{
+		width: 40%;
+		margin: 0 auto;
+
+		&.on {
+			animation:ani-wi 2s ease;
+			width: 100%;
+		}
+
+	}
+
+	.sample-02{
+		@include animate(fadeInUp, 1s);
+		@include animationSet();
+	}
+	.sample-02-2{
+		@include animate(fadeInUp, 1s);
+		@include animationSet($nameIf:true,$name:fadeInUp2,$ite:infinite,$dir:alternate);
+	}
+
+
+	//https://www.npmjs.com/package/animate.scss
+	.element {
+		@include animate(fadeIn, 3s);
+	}
+
+	.element.fadeIn {
+	  @include animate($speed: 3s);
+	}
+
+}
+
+//test code end
+//////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+/*==============================================================================================
+
+Theme Name: sd-theme
+Version:  4.9
+Theme URI: ---
+Tags: white
+Description: WordPress theme
+Text Domain: sd-theme
+Author: kouichi.hoshi
+Author URI: ---
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+==============================================================================================*/
+
+//bootstrapの変数を読み込み
+//@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss';
+
+//オリジナルの変数を定義(サイト初期設定を定義)
+@import '_sd-variables.scss';
+
+//normalize.cssを読み込み
+@import '_normalize.scss';
+
+//bootstrapを読み込み
+@import '_bootstrap.scss';
+
+//spinkitを読み込み
+//@import '../_spinkit/scss/_spinkit.scss';
+@import '_spinkit/scss/_spinkit.scss';
+
+//コンポーネントを定義
+@import '_sd-component.scss';
+
+//ベース用css
+@import '_sd-css.scss';
+
+//sd-theme用css
+@import '_sd-theme.scss';

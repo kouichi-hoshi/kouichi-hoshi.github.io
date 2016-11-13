@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+/*================================================================================
+
+custom
+
+================================================================================*/
+html {
+  overflow-y: scroll;
+}
+
+.wrap {
+  width: auto;
+  padding: 60px;
+}
+
+.header {
+  float: left;
+  margin-bottom: 30px;
+  text-align: center;
+  position: relative;
+}
+
+.header h1 {
+  font-size: 1.8rem;
+  margin: 0 0 30px 0;
+}
+
+.header .inner {
+  width: 300px;
+  position: fixed;
+}
+
+.header .text {
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.header .total {
+  margin-bottom: 30px;
+}
+
+.header .pref_title {
+  font-size: 3.4rem;
+}
+
+.header .pref_search {
+  margin-bottom: 180px;
+}
+
+.main-content {
+  padding-left: 360px;
+}
+
+.main-content .grid-item {
+  width: 200px;
+  margin: 15px;
+  background: #FFFFFF;
+  border: 1px solid #CCCCCC !important;
+  padding: 15px;
+  font-size: 1.4rem;
+}
+
+.none {
+  display: none;
+}

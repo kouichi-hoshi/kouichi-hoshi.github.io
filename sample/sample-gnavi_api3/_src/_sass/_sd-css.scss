@@ -1,0 +1,1208 @@
+@charset "UTF-8";
+
+
+
+/*================================================================================================================================================================
+
+sd-css
+
+================================================================================================================================================================*/
+
+//================================================================================
+
+// mixin
+
+//================================================================================
+
+
+
+/*================================================================================
+
+base
+
+================================================================================*/
+
+html{
+	font-size: $font-size_initialize;
+}
+
+body{
+	position: relative;
+	font-family: $font-family;
+	font-size: $font-size;
+	color: $text_color;
+	line-height: $line-height;
+	letter-spacing: $letter-spacing;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+a{
+	@include hover-fade-in();
+	color: $link_color;
+	text-decoration: none;
+	&:hover,
+	&:focus {
+		color: $link_color;
+		text-decoration: none;
+	}
+
+}
+
+dd{
+	margin: 0;
+}
+
+address{
+	font-style: normal;
+}
+
+section{
+	& + &{
+		margin-top: 60px;
+	}
+	*:last-child{
+		margin-bottom: 0;
+	}
+}
+
+.required{
+	color:#B70000;
+}
+
+
+/*================================================================================
+
+header
+
+================================================================================*/
+
+/**
+ * header
+ */
+
+#header{
+
+	position: relative;
+
+	@include mq-md{
+		display: flex;
+		align-items: center;
+		padding: 0 $grid-gutter-width;
+	}
+
+	.site-title{
+		position: relative;
+		text-align: center;
+		font-size: $font-size;
+		padding: 15px 0;
+		margin: 0;
+
+		@include mq-md{
+			font-size: $font-size + 0.2rem;
+			padding: 0 15px 0 0;
+		}
+
+		@include mq-md{
+			margin: 0 15px 0 0;
+		}
+
+	}
+
+}
+
+
+
+/**
+ * header-nav
+ */
+
+.header-nav{
+
+	.header-nav_body{
+		margin: 0;	
+	}
+
+	div.menu > ul, //WordPress デフォルト
+	ul.header-nav_body{
+
+		@include ol-ul_reset;
+		display:none;
+		display: flex;
+		flex-wrap:wrap;
+
+		li.menu-item ,
+		li.page-item {
+
+			text-align:center;
+			flex-grow:1;
+
+			@include mq-md{
+				text-align:left;
+				flex-grow: auto;
+			}
+
+		}
+
+		li.menu-item > a,
+		li.page-item > a{
+			display: block;
+			font-size: 3rem;
+			font-size: 1.4rem;
+			padding: 10px;
+		}
+
+	}
+
+}
+
+
+
+/*================================================================================
+
+hero-area
+
+================================================================================*/
+
+ .hero-area{
+	margin-bottom: 0;
+	@include box-shadow--gray();
+	text-align: center;
+	background-color: #FFFFFF;
+
+ 	.main_header{
+		text-align: center;
+	}
+
+	.hero-area-title{
+		font-size: 2rem;
+		line-height: 1.2;
+
+		@include mq-sm{
+			font-size: 3rem;
+		}
+	}
+
+	body.home.paged &{
+		display: none;
+	}
+
+	.site-description{
+		font-size: 1.2rem;
+		padding: 0 20%;
+	}
+
+}
+
+
+
+/*================================================================================
+
+main-content
+
+================================================================================*/
+
+#main-content{
+	margin: 30px 0;
+}
+
+
+
+/*================================================================================
+
+hentry
+
+================================================================================*/
+
+/*
+ * hentry
+ */
+
+.hentry{
+
+	& + &{
+		margin: 15px 0;
+		padding-top: 60px;
+		border-top: 1px solid #CCCCCC;
+		@include mq-md{
+			margin: 60px 0;
+		}
+	}
+
+}
+
+/*
+ * hentry_header
+ */
+
+.hentry_header{
+	margin-bottom: 15px;
+}
+
+.hentry_title{
+	line-height: $line-height;
+	font-size: 2rem;
+	margin: 0;
+	word-wrap:break-word;
+	overflow-wrap : break-word;
+	@include mq-md{
+		font-size: 2.6rem;
+	}
+}
+
+.hentry_data{
+	margin: 0 0 30px 0;
+	padding: 5px 0;
+	border-top: 1px dotted #CCCCCC;
+	border-bottom: 1px dotted #CCCCCC;
+}
+
+.sticky .time:before {
+	@include mark($bg-c:#FD4989);
+	content:"PickUp";
+	margin-right: 15px;
+	display: inline;
+	vertical-align: text-top;
+}
+
+time.time{
+	margin-bottom: 5px;
+	display: block;
+	font-size: 1.2rem;
+	@include mq-sm{
+		display: inline;
+	}
+}
+
+dl.tag,
+dl.cat{
+
+	margin: 0;
+	font-size: 1.2rem;
+
+	dt,dd{
+		display: inline;
+	}
+	dt{
+		font-weight: normal;
+	}
+
+	dd{
+		margin-left: 5px;
+	}
+
+	// a{
+	// 	@include mark();
+	// }
+
+}
+
+.hentry_thumbnail{
+	display: block;
+	text-align: center;
+	margin: 0 30px 0 0;
+
+	img{
+		@include fluid_img;
+	}
+
+}
+
+
+.post-password-required{
+//	width: 70%;
+	margin: 0 auto;
+	label{
+		// width:40%;
+		// @include mq-sm{
+		// 	width: 30%;
+		// }
+	}
+	input[type="submit"]{
+		// width: 30%;
+		// @include mq-sm{
+		// 	width: 20%;
+		// }
+	}
+}
+
+
+
+/*
+ * hentry_body
+ */
+
+.hentry_body{
+
+//	margin-bottom: 60px;
+
+	h1, h2, h3, h4, h5, h6{
+		line-height: $line-height;
+		margin: 45px 0 15px 0;
+	}
+
+	h1{
+		font-size: 2.8rem;
+		margin: 0 0 30px 0;
+		* + &{
+			margin-top: 75px;
+		}
+	}
+
+	h2{
+		font-size: 2.4rem;
+//		border-bottom: 1px solid lighten($primary_color,70%);
+		border-bottom: 1px solid $key_color;
+		color: $key_color;
+		margin: 0 0 30px 0;
+		* + &{
+			margin-top: 75px;
+		}
+	}
+
+	h3{
+		font-size: 2rem;
+//		border-left: 5px solid lighten($primary_color,70%);
+		border-left: 5px solid $key_color;
+		padding-left: 15px;
+		* + &{
+			margin-top: 45px;
+		}
+	}
+
+	h4{
+		font-size: 1.8rem;
+	}
+
+	h5{
+		font-size: 1.6rem;
+	}
+
+	h6{
+		font-size: 1.4rem;
+	}
+
+	p,ul,ol,dl,ul,blockquote,table,hr{
+		margin: 0 0 30px 0;
+	}
+
+	img{
+		@include fluid_img;
+	}
+
+	blockquote{
+		margin: 30px 0;
+	}
+
+	a{
+//		text-decoration: underline;
+		transition: opacity 0.2s linear;
+		&:hover{
+			opacity: 0.6;
+		}
+	}
+
+	ol,ul{
+		@include ol-ul_reset;
+		@include ol-ul--normal;
+	}
+
+	//投稿画像リサイズ
+	.size-full,
+	.size-large{
+		max-width: 100%;
+		height: auto; /* Make sure images with WordPress-added height and width attributes are scaled correctly */
+	}
+
+	.alignnone,
+	.wp-caption img{
+		max-width: 100%;
+		height: auto;
+	}
+
+	.aligncenter{
+		clear: both;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.alignleft{
+		@extend .aligncenter;
+		@include mq-sm{
+			display: inline;
+			float: left;
+			margin-left: 0;
+			margin-right: 15px;
+			margin-bottom: 15px;
+		}
+	}
+
+	.alignright{
+		@extend .aligncenter;
+		@include mq-sm{
+			display: inline;
+			float: right;
+			margin-left: 15px;
+			margin-right: 0;
+			margin-bottom: 15px;
+		}
+	}
+
+	.wp-caption,
+	.wp-caption-text,
+	.gallery-caption {
+		font-size: 90%;
+	}
+
+	.wp-caption{
+		width: auto !important;
+		text-align: center;
+	}
+
+	.wp-caption-text{
+		text-align: center;
+	}
+
+	> *:first-child{
+		margin-top: 0;
+	}
+
+
+	/**
+	 * block
+	 */
+	.block{
+		@include sd-block($pad:30px);
+		margin-bottom: 30px;
+	}
+
+	.ol--reset,
+	.ul--reset{
+		@include ol-ul_reset;
+	}
+
+	.ol,
+	.ul{
+		 @include ol_ul--Custom(#CCCCCC);
+	}
+
+	// dl.block,
+	// ul.block{
+	// 	@include sd-block();
+	// 	padding: 0;
+	// 	li{
+	// 		padding: 15px;
+	// 		border-bottom: 1px solid #CCCCCC;
+	// 	}
+	// }
+
+	//定義リスト用スタイル設定
+	.dl{
+		@include dl(80);
+	}
+
+	.dl-160{
+		@include dl(160);
+	}
+
+	.hr{
+		@include hr();
+	}
+
+	.form{
+		@include sd-form($primary_color);
+	}
+
+	.sd-table{
+		@include sd-table;
+	}
+
+	/*グラデーション*/
+	.gradation{
+		@include sd-gradation();
+	}
+
+	/*テキストシャドウ*/
+	.text-shadow--gray{
+		@include text-shadow();
+	}
+	.text-shadow--white{
+		@include text-shadow-white();
+	}
+
+	/*ボックスシャドウ*/
+	.box-shadow--gray{
+		@include box-shadow();
+	}
+	.box-shadow--white{
+		@include box-shadow--white();
+	}
+
+	.sd-label{
+		@include label();
+	}
+
+	.flo-left{
+		float:left;
+	}
+
+	.flo-right{
+		float:right;
+	}
+
+	.text_left{
+		text-align: left;
+	}
+
+	.text_right{
+		text-align: right;
+	}
+
+	.text_center{
+		text-align: center;
+	}
+
+	.font_small{
+		font-size: 80%;
+	}
+
+
+
+
+	/*********/
+
+
+
+	.picture{
+		@include picture();
+		@include box-shadow($blur:5px);
+	}
+
+	.picture--with-caption{
+		@extend .picture;
+		margin-bottom: 5px;
+	}
+
+	.flex-wrapper{
+		display: flex;
+		align-items: center;
+	}
+
+	.flex-outer{
+		display: flex;
+		align-items: center;
+	}
+
+	.opa-0{
+		opacity: 0;
+	}
+
+
+
+
+} // hentry_body end
+
+
+
+/**
+ * hentry_footer
+ */
+
+.hentry_footer{
+
+	.hentry_footer__body{
+
+	}
+
+}
+
+
+
+/*================================================================================
+
+pagination / post_navigation
+
+================================================================================*/
+
+.post-navigation,
+.pagination{
+
+	.screen-reader-text {
+		display: none;
+		// clip: rect(1px, 1px, 1px, 1px);
+		// position: absolute !important;
+		// height: 1px;
+		// width: 1px;
+		// overflow: hidden;
+	}
+
+	.nav-links{
+
+		text-align: center;
+		margin: 60px 0;
+
+		.page-numbers{
+			@include sd-btn(lighten($link_color,10%),lighten($link_color,65%));
+			display: inline-block;
+		}
+
+		.page-numbers.current{
+			@include sd-btn();
+		}
+
+		.page-numbers.next{
+
+		}
+
+		.page-numbers.prev{
+
+		}
+
+		.nav-previous,
+		.nav-next{
+			text-align: left;
+			margin-bottom: 15px;
+		}
+
+	}
+
+	.screen-reader-text:focus {
+		// background-color: #f1f1f1;
+		// border-radius: 3px;
+		// box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+		// clip: auto !important;
+		// color: #21759b;
+		// display: block;
+		// font-size: 14px;
+		// font-size: 0.875rem;
+		// font-weight: bold;
+		// height: auto;
+		// left: 5px;
+		// line-height: normal;
+		// padding: 15px 23px 14px;
+		// text-decoration: none;
+		// top: 5px;
+		// width: auto;
+		// z-index: 100000; /* Above WP toolbar. */
+	}
+
+}
+
+
+
+/*================================================================================
+
+sidebar
+
+================================================================================*/
+
+#sidebar{
+
+	.sidebar-widget{
+
+		list-style-type: none;
+		margin: 0 0 15px 0;
+		margin-bottom: 30px;
+
+		&:last-child{
+			margin-bottom: 0;
+		}
+
+		ul{
+			@include ol-ul_reset;
+		}
+
+		li{
+			a{
+				display: block;
+				padding: 10px 0;
+			}
+		}
+
+	}
+
+	.widgettitle{
+		font-size: 2.2rem;
+		padding: 5px 0 5px 10px;
+		border-left: 3px double lighten($primary_color,50%);
+		margin: 15px 0;
+	}
+
+	.widgettitle + ul > li {
+		border-top: 1px solid #FFFFFF;
+		border-bottom: 1px solid #CCCCCC;
+	}
+
+}
+
+
+/*================================================================================
+
+footer
+
+================================================================================*/
+
+#footer{
+
+	background-color: #FFFFFF;
+	padding: 15px 0;
+	margin-top: 60px;
+
+	.site-title{
+		text-align: center;
+		margin: 15px 0;
+	}
+
+	.footer-nav{
+		@include navUlStyle('.footer-nav__body');
+	}
+
+	.copyright{
+		text-align: center;
+		font-size: 1.2rem;
+	}
+
+}
+
+
+
+/*================================================================================
+
+nav_btn
+
+================================================================================*/
+
+// .nav_btn__outer{
+// 	z-index: $z9;
+// 	text-align: center;
+// 	position: fixed;
+// 	bottom: 30px;
+// 	left: 30px;
+// 	@include mq-md{
+// 		display: none;
+// 	}
+// }
+
+#nav_btn{
+	display: block;
+	z-index: $z9;
+	text-align: center;
+	position: fixed;
+	bottom: 30px;
+	left: 30px;
+	@include mq-md{
+		display: none;
+	}
+}
+
+
+
+/*================================================================================
+
+go-to-top
+
+================================================================================*/
+
+//Top Return
+.go-to-top{
+
+	z-index: $z7;
+	display: none;
+	position: fixed;
+	bottom: 30px;
+	right: 30px;
+
+	.go-to-top_body {
+		display: block;
+		padding: 15px;
+		border-radius: 8px;
+		background-color: $link_color;
+		text-align: center;
+		line-height: 1;
+		color: #FFFFFF;
+	}
+
+}
+
+
+
+/*================================================================================
+
+template / single.php
+
+================================================================================*/
+
+.pagenext,
+.pageprev{
+	margin: 15px 75px;
+	padding: 5px;
+	border: 1px solid $secondary_color;
+	background-color: #FFFFFF;
+}
+
+
+
+/*================================================================================
+
+template / comments.php
+
+================================================================================*/
+
+.comments{
+
+	padding: 15px;
+	background-color: #F7F7F7;
+
+	textarea,
+	input[type="text"]{
+		width: 100%;
+	}
+
+	// #comment{
+	// 	width: 100%;
+	// }
+
+	.comments__title,
+	.comment-reply-title{
+		font-size: 2rem;
+		border-bottom: 3px solid $secondary_color;
+		padding-bottom: 5px;
+		margin-bottom: 15px;
+	}
+
+	.comment-form-comment,
+	.comment-form-author,
+	.comment-form-email,
+	.comment-form-url{
+		label{
+			margin: 15px 0;
+		}
+	}
+
+	.form-submit{
+		text-align: center;
+		margin-top: 30px;
+		input[type="submit"]{
+			@include sd-btn;
+		}
+	}
+
+	.commets-list{
+		padding: 0;
+		li{
+			list-style-type: none;
+			margin: 0 0 15px 0;
+			border: 1px solid $secondary_color;
+			padding: 15px;
+		}
+	}
+
+	.bypostauthor{
+		border: 1px solid #686868;
+	}
+
+}
+
+
+
+
+/*================================================================================
+
+template / 404.php
+
+================================================================================*/
+
+.not-found {
+
+	margin: auto;
+	padding: 10px;
+	text-align: center;
+	line-height: 1;
+
+	h1 {
+		font-size: 250%;
+		color: #BBBBBB;
+		font-size: 150%;
+	}
+
+	span {
+		font-size: 200%;
+	}
+
+	p {
+		line-height: 1.8em;
+	}
+
+	a {
+		display: block;
+		padding-top: 2em;
+		@include hover-fade-in();
+	}
+
+}
+
+
+
+/*================================================================================
+
+plugin / Library / embed
+
+================================================================================*/
+
+/**
+ * メールフォームプラグイン用のスタイル
+ */
+.wpcf7,
+.mw_wp_form{
+
+	input, button, select, textarea {
+		padding: 10px;
+		border: 5px solid #DDDDDD;
+		&:focus{
+			border: 5px solid $key_color;
+		}
+	}
+
+	input[type="text"]{
+		width: 100%;
+	}
+
+	input[type="radio"]{
+		margin-left: 10px;
+	}
+
+	textarea {
+		min-height: 200px;
+		width: 100%;
+	}
+
+	th,td{
+		display:block;
+		@include mq-md{
+			display: table-cell;
+		}
+	}
+
+	th{
+		text-align: center;
+		color: #515151;
+		font-size: 1.8rem;
+		vertical-align: middle !important;
+	}
+
+	dt{
+		margin-bottom: 3px;
+	}
+	dd + dt{
+		margin-top: 30px;
+	}
+
+	.form-submit,
+	.submit_btn_area{
+		text-align: center;
+		margin: 30px 0;
+		padding: 0 20%;
+
+		input[type="submit"]{
+			border:none;
+			@include sd-btn(#FFFFFF,$link_color);
+			margin: 5px;
+		}
+
+	}
+
+}
+
+
+/**
+ * GoogleMap
+ */
+
+.map{
+	iframe{
+		width: 100%;
+	}
+}
+
+
+
+
+
+/*================================================================================
+
+Utility
+
+================================================================================*/
+
+.none{
+	display: none;
+}
+
+.hide_text{
+	@include hide_text;
+}
+
+.clearfix{
+	@include clearfix;
+}
+.clear{
+	clear: both;
+}
+
+.fluid_img{
+	@include fluid_img;
+}
+
+.sd-btn{
+	@include sd-btn();
+}
+
+
+
+
+/*================================================================================
+
+animation
+
+================================================================================*/
+
+/*点滅設定*/
+.sd-Keyframes{
+	@include sdKeyframes--opacity-flashing($c0:.8,$c50:1,$c100:.8);
+}
+
+/*点滅*/
+.sd-flashing{
+	@include sdFlashing(sdKeyframes--opacity-flashing);
+}
+
+
+
+
+
+
+
+/*================================================================================
+
+state
+for javascript
+
+================================================================================*/
+
+//.sd-fade-in,
+.is-fade-in{
+	@include fade-in();
+}
+
+//.sd-fade-out,
+.is-fade-out{
+	@include fade-in(0,0.6s,ease-in-out);
+}
+
+//.sd-fade-out--long,
+.is-fade-out--long{
+	@include fade-in(0,1s,ease-in-out);
+}
+
+// スマートフォン表示でヘッダーナビゲーションの表示/非表示を切り替える
+//.nav-on,
+.is-nav-on{
+	display: table-cell !important;
+	vertical-align: middle;
+	height: 100vh;
+//	padding: 20vh 0 !important;
+}
+
+.ani-fadeIn,
+.ani-fadeInLeft{
+	opacity: 0;
+}
+
+.zoom:hover{
+	transform: scale(1.2,1.2);
+	transition: all 0.5s ease 0s;
+}
+
+/**
+ * sd_slideshow初期設定
+ */
+
+.sd_slideshow{
+	position: relative;
+	img{
+		position: absolute;
+		top:0;
+		left: 0;
+		display: none;
+		width: 100%;
+		height: auto;
+	}
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+//test code
+
+
+body.develop_front-page{
+	height: 100%;
+
+	#header{
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+
+	#footer{
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		background-color: transparent;
+	}
+
+	.frame{
+
+		display: flex;
+//		align-items: stretch;
+		justify-content: center;
+		height: 100%;
+		overflow: hidden;
+		flex-direction:row-reverse;
+
+
+		.frame__main{
+			background-color: #DDDDDD;
+			width: 30%;
+//			margin-left: -30%;
+//			width: 100%;
+			.frame__main-inner{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 100%;
+			}
+
+		}
+
+		.frame__sub{
+			background-color: #CCCCCC;
+			width: 70%;
+//			width: 100%;
+//			margin-right: -70%;
+			.frame__sub-inner{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 100%;
+			}
+
+		}
+
+	} //frame end
+
+}
+
+// test end
+//////////////////////////////////////////////////////////////////////////////////////////////
