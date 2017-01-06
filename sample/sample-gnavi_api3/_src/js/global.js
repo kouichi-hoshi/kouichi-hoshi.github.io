@@ -69,6 +69,33 @@ var getValue = function () {
 }();
 
 /**
+ * serializeObject関数
+ * serializeArray拡張し、フォーム内のnameの値を配列として返す。
+ */
+
+
+(function (jQuery) {
+	jQuery.fn.serializeObject = function () {
+
+		var object = {};
+		var array = this.serializeArray();
+
+		$.each(array, function () {
+			if (object[this.name] !== undefined) {
+				if (!object[this.name].push) {
+					object[this.name] = [object[this.name]];
+				}
+				object[this.name].push(this.value || '');
+			} else {
+				object[this.name] = this.value || '';
+			}
+		});
+
+		return object;
+	};
+})(jQuery);
+
+/**
  * ウィンドウサイズに応じて処理を切り分けたいときに、判定するための値を返す。
  * loadやresizeイベントの中で使う。
  */

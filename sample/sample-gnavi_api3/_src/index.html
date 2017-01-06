@@ -8,8 +8,7 @@
 	<script type='text/javascript' src='plugin/jquery-2.1.1.min.js'></script>
 	<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.0/imagesloaded.pkgd.min.js'></script>
 	<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/masonry/4.0.0/masonry.pkgd.min.js'></script>
-	<script type='text/javascript' src='js/gnavi_api2.js'></script>
-	<script type='text/javascript' src='js/gnavi_api.js'></script>
+	<script type='text/javascript' src='js/gnavi_api3.js'></script>
 	<script type='text/javascript' src='js/global.js'></script>
 	<script type='text/javascript' src='js/custom.js'></script>
 </head>
@@ -31,11 +30,12 @@
 				<h1>都道府県別カフェ検索<br />(ぐるなびAPIサンプルコード)</h1>
 				<h2 class="pref_title"></h2>
 				<p><span class="total"></span></p>
-				<div class="pref_search">
+				<form class="pref_search">
 					<h3>都道府県変更</h3>
 					<select name="pref_name"></select>
+					<div class="block-cls"></div>
 					<button type="button" name="pref_btn">変更する</button>
-				</div>
+				</form>
 				<p class="text">このサイトはぐるなびAPIを使って作ったSPAのサンプルサイトです。ぐるなびに掲載されているカフェを、都道府県ごとに表示させる機能を提供します。</p>
 				<div>
 					<a href="http://www.gnavi.co.jp/"> 

@@ -133,6 +133,7 @@ jQuery(function () {
 		//ページがロードされたら
 		jQuery(window).one('load', function () {
 
+			_showData();
 			//店舗データを取得し表示する
 			jQuery.getJSON(url_rest, params_shop, function (result) {
 

@@ -49,6 +49,31 @@ class getValue{
 
 }
 
+/**
+ * serializeObject関数
+ * serializeArray拡張し、フォーム内のnameの値を配列として返す。
+ */
+(function(jQuery){
+	jQuery.fn.serializeObject = function(){
+
+		var object = {};
+		var array = this.serializeArray();
+		
+		$.each(array, function() {
+			if (object[this.name] !== undefined) {
+				if (!object[this.name].push) {
+					object[this.name] = [object[this.name]];
+				}
+				object[this.name].push(this.value || '');
+			} else {
+				object[this.name] = this.value || '';
+			}
+		});
+	
+	return object;
+
+	}
+})(jQuery);
 
 
 /**
