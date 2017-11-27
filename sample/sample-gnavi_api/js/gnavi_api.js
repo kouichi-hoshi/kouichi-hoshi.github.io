@@ -14,7 +14,7 @@ jQuery(function() {
 	var $inner = '.grid-item'; //inner要素指定
 
 	// API
-	var api_key = 'a6154b84e515ec01816a2abfe80fc329'; //アクセスキー
+	var api_key = '37f4b836de382ab76a1330fce92eb319'; //アクセスキー
 	var hit_per_page_num = 10; //一度に表示する件数
 	var offset_page_num = 1; //初期ページ
 	var pref_name_ini = 13; //都道府県初期設定 (PREF13=東京都)
