@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+	<title>Vue.js test</title>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+	<p>＊「次の投稿を取得する」ボタンをクリックすると、続きの投稿タイトルが画面下部に追加されます。<br />必要に応じてスクロールして閲覧して下さい。</p>
+
+	<div id="example">
+		<ul v-for="posts of wpData">
+			<li v-for="post of posts">
+	    		<a target="_blank" v-bind:href="post.link">{{ post.date }}&emsp;{{ post.title.rendered }}</a>
+			</li>
+  		</ul>
+		<button class="sd-btn" v-on:click="wpJsonDataUpdate">次の投稿を取得する</button>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+			integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+			crossorigin="anonymous">
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script>
+
+		let wpPost = new Vue({
+			el: '#example',
+			data: {
+				wpData: [],
+				arr:{
+					pageNum : 1,
+					perPage : '&per_page=5',
+					APIurl : 'https://example.stella-design.biz/wp-json/wp/v2/posts?page=',
+					maxPost: undefined
+				}
+			},
+			methods: {
+				getWpJsonData: function(){
+					jQuery( () => {
+						jQuery.ajax({
+							type: "GET",
+							url: this.arr.APIurl + this.arr.pageNum + this.arr.perPage,
+							dataType: "json"
+						})
+						.then( (data, status, xhr) => {
+							if(!this.arr.maxPost){
+								let responce_header = xhr.getResponseHeader('X-WP-TotalPages');
+								this.arr.maxPost = responce_header;
+								console.log('総ページ数: ' + this.arr.maxPost);
+							}
+							for(let i = 0; i < data.length; i++){
+								let date = new Date(data[i].date);
+								date = date.toLocaleDateString();
+								data[i].date = date;
+							}
+							this.wpData.push(data);
+
+						},
+						() => {
+							alert("通信エラー：データをロードできませんでした。");
+						})
+					})
+				},
+				wpJsonDataUpdate: function(){
+					if( this.arr.pageNum === Number(this.arr.maxPost) ){
+						alert("すべてのデータを取得しました。");
+					} else {
+						this.arr.pageNum++;
+						this.getWpJsonData();
+						console.log('現在の表示ページ数： ' + this.arr.pageNum);
+					}
+				}
+			},
+			created: function(){
+				this.getWpJsonData();
+				console.log('現在の表示ページ数： ' + this.arr.pageNum);
+			}
+		});
+
+	</script>
+
+</body>
+</html>
